@@ -1,0 +1,1106 @@
+/* ============================================================
+   Nutri Notebook — case-study-nutri.css
+   Section rhythm / backgrounds follow nutri - section 1~9
+   ============================================================ */
+
+.case.nutri {
+  background: #fff;
+  --n-mint: #5bbfa5;
+  --n-deep: #2f7d63;
+  --n-ink: #1b1d1c;
+  --n-body: #6f7673;
+  --n-muted: #9aa19d;
+  --n-rule: #e4e8e5;
+  --n-pad: 40px;
+  --n-gutter: 140px;
+}
+
+.case.nutri .case-progress i {
+  background: var(--n-mint);
+}
+
+/* ---------- 页头：布局由共享 CaseHero 提供，见 global.css ---------- */
+
+/* 桌面端（1280 / 1440）section 内部额外左侧留白（990px 版心内） */
+@media (min-width: 1025px) {
+  .case.nutri .case-index {
+    padding-left: 150px;
+  }
+}
+
+/* ---------- 通用 section ---------- */
+.nutri-sec {
+  width: min(990px, 100%);
+  margin: 0 auto 100px;
+  padding: 80px 70px 96px;
+  border-radius: 36px;
+  background: #fafafa;
+  overflow: hidden;
+}
+
+/* 底部 All projects 与上方 section 对齐 */
+.case.nutri .case-index {
+  width: min(990px, 100%);
+  margin: 0 auto;
+}
+
+.nutri-sec--mint,
+.nutri-sec--fade {
+  background: #f3fcf9;
+}
+
+.nutri-sec--light {
+  background: #fafafa;
+}
+
+.nutri-inner {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* 以 full-bleed 色带结尾的 section 去掉底部留白 */
+#n-strategy2,
+#n-strategy3 {
+  padding-bottom: 96px;
+}
+
+/* section chip */
+.nutri-chip {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 44px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(219, 219, 219, 0.2);
+  backdrop-filter: blur(6.6666669845581055px);
+  -webkit-backdrop-filter: blur(6.6666669845581055px);
+  font-size: 16px;
+  line-height: 1;
+  color: var(--n-body);
+}
+
+/* 通用文字 */
+.case.nutri :where(p, li, dd, h1, h2, h3, h4) {
+  text-wrap: pretty;
+}
+
+.nutri-italic {
+  margin: 0;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--n-body);
+}
+
+.nutri-lead {
+  max-width: 62ch;
+}
+
+.nutri-h3 {
+  margin: 0 0 16px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--n-ink);
+}
+
+.nutri-h4 {
+  margin: 0 0 14px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--n-ink);
+}
+
+.nutri-note {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--n-muted);
+}
+
+/* ============================================================
+   1. Background
+   ============================================================ */
+.nutri-bg-top {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: clamp(40px, 7vw, 100px);
+  align-items: center;
+}
+
+.nutri-subhealth {
+  margin: 0;
+}
+
+.nutri-subhealth img {
+  width: 100%;
+  height: auto;
+}
+
+.nutri-bg-intro {
+  max-width: 46ch;
+  padding-top: 8px;
+}
+
+.nutri-diary {
+  margin-top: 88px;
+}
+
+.nutri-diary-tables {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(32px, 6vw, 80px);
+  margin-top: 36px;
+}
+
+.nutri-diary-tables figure {
+  margin: 0;
+}
+
+.nutri-diary-tables img {
+  width: 100%;
+  max-width: 385px;
+  height: auto;
+}
+
+.nutri-diary-follow {
+  margin-top: 48px;
+  max-width: 52ch;
+}
+
+.nutri-pattern-cards {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(24px, 4vw, 56px);
+  margin-top: 48px;
+}
+
+.nutri-pattern {
+  margin: 0;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.nutri-pattern img {
+  width: 100%;
+  height: auto;
+}
+
+/* 三张卡片按素材原始宽度等比缩放，保证图内文字大小一致，底部对齐 */
+.nutri-pattern--lg {
+  width: calc(515px * 0.58);
+}
+
+.nutri-pattern--md {
+  width: calc(447px * 0.58);
+}
+
+.nutri-pattern--sm {
+  width: calc(447px * 0.58);
+}
+
+/* ============================================================
+   2. Persona
+   ============================================================ */
+.nutri-persona-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 390px) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+  margin-top: 64px;
+}
+
+.nutri-persona-goals {
+  margin: 0;
+  max-width: 390px;
+}
+
+.nutri-persona-goals img {
+  width: 100%;
+  height: auto;
+}
+
+.nutri-persona-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.nutri-persona-card {
+  margin: 0;
+  max-width: 315px;
+}
+
+.nutri-persona-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.nutri-quote {
+  max-width: 46ch;
+  padding-top: 8px;
+  text-align: left;
+}
+
+.nutri-persona-frustration {
+  margin: 72px 0 0;
+  max-width: 510px;
+}
+
+.nutri-persona-frustration img {
+  width: 100%;
+  height: auto;
+}
+
+/* ============================================================
+   3. Strategy
+   ============================================================ */
+.nutri-strategy-list {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.nutri-strategy-item {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 12px;
+  padding: 28px 0;
+}
+
+.nutri-strategy-item+.nutri-strategy-item {
+  border-top: none;
+}
+
+.nutri-strategy-num {
+  font-size: 52px;
+  font-weight: 300;
+  line-height: 0.9;
+  color: #c9cfcb;
+}
+
+.nutri-strategy-item h3 {
+  margin: 0 0 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--n-rule);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--n-ink);
+}
+
+.nutri-strategy-item ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nutri-strategy-item li {
+  position: relative;
+  padding-left: 14px;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--n-body);
+}
+
+.nutri-strategy-item li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--n-muted);
+}
+
+/* ============================================================
+   4. Strategy - 1 process
+   ============================================================ */
+.nutri-process {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(40px, 8vw, 120px);
+  align-items: start;
+}
+
+.nutri-process-col figure {
+  margin: 0;
+  max-width: 75%;
+}
+
+.nutri-process-col img {
+  width: 100%;
+  height: auto;
+}
+
+.nutri-process-col:last-child figure {
+  opacity: 0.55;
+  filter: grayscale(1);
+}
+
+.nutri-less {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 22px;
+  margin: 96px 0 0;
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--n-deep);
+}
+
+.nutri-less-left {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: 0.11em;
+  color: var(--n-deep);
+}
+
+/* ============================================================
+   5. Strategy - 1 features
+   ============================================================ */
+.nutri-features .nutri-inner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(40px, 7vw, 110px);
+  row-gap: 0;
+  align-items: start;
+}
+
+.nutri-feature {
+  margin-bottom: 96px;
+}
+
+.nutri-feature--center {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.nutri-feature-text {
+  max-width: 44ch;
+}
+
+.nutri-feature-text h3 {
+  white-space: pre-line;
+  margin: 0 0 14px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--n-ink);
+}
+
+.nutri-feature--center .nutri-feature-text {
+  margin-bottom: 44px;
+}
+
+.nutri-feature-fig {
+  margin: 0;
+}
+
+.nutri-feature-fig img {
+  width: 100%;
+  height: auto;
+}
+
+.nutri-feature-fig--sm {
+  max-width: 360px;
+}
+
+.nutri-feature-fig--md {
+  max-width: 780px;
+}
+
+.nutri-feature-fig--md-sm {
+  max-width: 468px;
+  /* 585 * 0.8 */
+}
+
+.nutri-feature-fig--lg {
+  max-width: 800px;
+}
+
+.nutri-feature--center .nutri-feature-fig {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.nutri-feature--center:first-child {
+  grid-column: 1;
+  grid-row: 1;
+  margin-bottom: 40px;
+}
+
+/* Image Pick-up 与 Voice Recording 图片并排放在第一行 */
+.nutri-feature--pair-left {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.nutri-feature--pair-left,
+.nutri-feature--pair-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nutri-feature--pair-left .nutri-feature-text,
+.nutri-feature--pair-right .nutri-feature-text {
+  margin-bottom: 36px;
+}
+
+/* ============================================================
+   6. Usability Test
+   ============================================================ */
+.nutri-usability {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+  gap: clamp(40px, 7vw, 100px);
+  align-items: start;
+}
+
+.nutri-usability-left figure {
+  margin: 32px 0 0;
+  max-width: 672px;
+}
+
+.nutri-usability-left img {
+  width: 100%;
+  height: auto;
+}
+
+.nutri-usability-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nutri-usability-right figure {
+  margin: 32px 0 0;
+  max-width: 400px;
+}
+
+.nutri-usability-right img {
+  width: 100%;
+  height: auto;
+}
+
+/* ============================================================
+   7. Strategy - 2
+   ============================================================ */
+.nutri-cal-phones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 380px));
+  justify-content: start;
+  gap: clamp(28px, 4vw, 48px);
+}
+
+.nutri-phone {
+  margin: 0;
+  max-width: 400px;
+}
+
+.nutri-phone img {
+  width: 100%;
+  height: auto;
+}
+
+.nutri-phone--2 {
+  margin-top: 64px;
+}
+
+.nutri-cal-blocks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(32px, 6vw, 80px);
+  margin-top: 64px;
+  max-width: 760px;
+}
+
+.nutri-recommend-title {
+  margin: 96px 0 0;
+  max-width: 34ch;
+  text-align: left;
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+.nutri-recommend {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 250px));
+  justify-content: start;
+  gap: clamp(20px, 3vw, 28px);
+  margin-top: 40px;
+}
+
+.nutri-recommend figure {
+  margin: 0;
+}
+
+.nutri-recommend img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+}
+
+/* mint band */
+.nutri-band {
+  margin-top: 100px;
+  padding: 72px clamp(28px, 4vw, 64px) 76px;
+  border-radius: 24px;
+  background: #e9f6f0;
+}
+
+.nutri-band--gray {
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.nutri-band-title {
+  margin: 0 0 48px;
+  text-align: left;
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--n-ink);
+}
+
+.nutri-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 470px);
+  justify-content: start;
+  gap: clamp(24px, 4vw, 40px);
+  align-items: center;
+}
+
+.nutri-detail figure {
+  margin: 0;
+}
+
+.nutri-detail-card {
+  max-width: 238px;
+  /* 340 * 0.7 */
+}
+
+.nutri-detail img {
+  width: 100%;
+  height: auto;
+}
+
+/* ============================================================
+   8. Strategy - 3
+   ============================================================ */
+.nutri-habit-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+
+.nutri-habit-text>div+div {
+  margin-top: 40px;
+}
+
+.nutri-habit-text .nutri-italic {
+  max-width: 46ch;
+}
+
+.nutri-habit-mid {
+  display: grid;
+  grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+  margin-top: 96px;
+}
+
+.nutri-habit-emoji {
+  max-width: 42ch;
+}
+
+.nutri-handheld {
+  margin: 0;
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nutri-handheld img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   9. Theme Color
+   ============================================================ */
+.nutri-theme-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nutri-swatch {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.nutri-theme-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--n-ink);
+}
+
+.nutri-theme-rows {
+  margin-top: 48px;
+}
+
+.nutri-theme-row {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: 40px;
+  align-items: baseline;
+  padding: 18px 0;
+}
+
+.nutri-theme-label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.nutri-theme-label span {
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: var(--n-mint);
+}
+
+.nutri-theme-label b {
+  font-size: 20px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--n-ink);
+}
+
+.nutri-theme-row p {
+  margin: 0;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--n-body);
+}
+
+.nutri-shades {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  margin-top: 80px;
+}
+
+.nutri-shades article {
+  max-width: 460px;
+}
+
+.nutri-shade-rule {
+  display: none;
+}
+
+.nutri-shades h4 {
+  margin: 0 0 14px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--n-ink);
+}
+
+.nutri-shades .nutri-italic {
+  font-size: 16px;
+}
+
+.nutri-shades figure {
+  margin: 26px 0 0;
+}
+
+.nutri-shades img {
+  height: 56px;
+  width: auto;
+  max-width: 100%;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1280px) {
+  .case.nutri {
+    --pl: 80px;
+    --pr: 80px;
+    --n-gutter: 96px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .case.nutri {
+    --pl: 56px;
+    --pr: 56px;
+    --n-pad: 32px;
+    --n-gutter: 64px;
+  }
+
+  .nutri-bg-top {
+    grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+    gap: 48px;
+  }
+
+  .nutri-quote {
+    padding-top: 0;
+  }
+
+  .nutri-usability {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 64px;
+  }
+
+  .nutri-usability-right {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 220px);
+    gap: 32px;
+    align-items: start;
+  }
+
+  .nutri-features .nutri-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nutri-feature--center {
+    grid-column: auto;
+  }
+
+  .nutri-feature--center:first-child,
+  .nutri-feature--pair-left {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .nutri-feature--pair-left,
+  .nutri-feature--pair-right {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .nutri-habit-top,
+  .nutri-habit-mid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+  }
+
+  .nutri-habit-mid .nutri-phone {
+    justify-self: start;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .case.nutri {
+    --pl: 32px;
+    --pr: 32px;
+    --n-pad: 28px;
+    --n-gutter: 28px;
+  }
+
+  .nutri-sec {
+    width: 100%;
+    margin: 0 0 64px;
+    padding: 50px 40px 64px;
+    border-radius: 0;
+  }
+
+  .case.nutri .case-index {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #n-strategy2,
+  #n-strategy3 {
+    padding-bottom: 64px;
+  }
+
+  .nutri-chip {
+    margin-bottom: 32px;
+  }
+
+  .nutri-bg-top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .nutri-bg-top .nutri-subhealth {
+    max-width: 360px;
+  }
+
+  .nutri-diary {
+    margin-top: 64px;
+  }
+
+  .nutri-diary-tables {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .nutri-pattern-cards {
+    display: grid;
+    grid-template-columns: 1.152fr 1fr 1fr;
+    gap: 16px;
+    align-items: end;
+  }
+
+  .nutri-pattern--lg,
+  .nutri-pattern--md,
+  .nutri-pattern--sm {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .nutri-persona-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+    margin-top: 44px;
+  }
+
+  .nutri-persona-goals {
+    max-width: 390px;
+  }
+
+  .nutri-persona-frustration {
+    margin-top: 56px;
+  }
+
+  .nutri-strategy-item {
+    grid-template-columns: 56px minmax(0, 1fr);
+    padding: 24px 0;
+  }
+
+  .nutri-strategy-num {
+    font-size: 40px;
+  }
+
+  .nutri-process {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 56px;
+  }
+
+  .nutri-process-col:last-child figure {
+    margin-top: 0;
+  }
+
+  .nutri-less {
+    margin-top: 72px;
+    font-size: 20px;
+  }
+
+  .nutri-feature {
+    margin-bottom: 80px;
+  }
+
+  .nutri-usability-right {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nutri-cal-phones {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  .nutri-phone--2 {
+    margin-top: 40px;
+  }
+
+  .nutri-cal-blocks {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+    margin-top: 48px;
+  }
+
+  .nutri-recommend-title {
+    margin-top: 72px;
+    font-size: 18px;
+  }
+
+  .nutri-recommend {
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .nutri-band {
+    margin-top: 72px;
+    padding: 64px 0 72px;
+  }
+
+  .nutri-detail {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    justify-items: center;
+  }
+
+  .nutri-detail-card {
+    max-width: 300px;
+  }
+
+  .nutri-theme-rows {
+    margin-top: 40px;
+  }
+
+  .nutri-theme-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .nutri-theme-row p {
+    font-size: 16px;
+  }
+
+  .nutri-shades {
+    gap: 44px;
+    margin-top: 56px;
+  }
+}
+
+@media (max-width: 480px) {
+  .case.nutri {
+    --pl: 20px;
+    --pr: 20px;
+    --n-pad: 20px;
+    --n-gutter: 16px;
+  }
+
+  .nutri-italic,
+  .nutri-strategy-item li {
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .nutri-sec {
+    margin-bottom: 48px;
+    padding: 44px 20px 52px;
+    border-radius: 20px;
+  }
+
+  #n-strategy2,
+  #n-strategy3 {
+    padding-bottom: 52px;
+  }
+
+  .nutri-chip {
+    margin-bottom: 26px;
+    padding: 9px 16px;
+    font-size: 12px;
+  }
+
+  .nutri-h3 {
+    font-size: 18px;
+  }
+
+  .nutri-pattern-cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    margin-top: 36px;
+  }
+
+  .nutri-pattern--lg,
+  .nutri-pattern--md,
+  .nutri-pattern--sm {
+    width: auto;
+    flex: 0 1 auto;
+  }
+
+  .nutri-pattern--lg {
+    max-width: 90%;
+  }
+
+  .nutri-pattern--md {
+    max-width: 78%;
+    margin-left: 12%;
+  }
+
+  .nutri-pattern--sm {
+    max-width: 78%;
+    margin-left: 22%;
+  }
+
+  .nutri-persona-right {
+    gap: 24px;
+  }
+
+  .nutri-quote {
+    text-align: left;
+    font-size: 13px;
+  }
+
+  .nutri-strategy-item {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .nutri-strategy-num {
+    font-size: 32px;
+  }
+
+  .nutri-strategy-item h3 {
+    font-size: 19px;
+  }
+
+  .nutri-less {
+    margin-top: 56px;
+    gap: 14px;
+    font-size: 17px;
+    letter-spacing: 0.1em;
+  }
+
+  .nutri-feature-fig--sm {
+    max-width: 100%;
+  }
+
+  .nutri-feature-fig--md {
+    max-width: 100%;
+  }
+
+  .nutri-phone--2 {
+    margin-top: 0;
+  }
+
+  .nutri-recommend {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .nutri-theme-label {
+    gap: 16px;
+  }
+
+  .nutri-theme-label b {
+    font-size: 18px;
+  }
+
+  .nutri-handheld {
+    max-width: 100%;
+  }
+}

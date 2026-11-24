@@ -1,0 +1,1567 @@
+/* =========================================================
+   Sonimod · Robot Delivery Management System Design
+   Breakpoints: 1440 / 1280 (990 centered) · 768 / 390 (stretch)
+   ========================================================= */
+
+.dlv {
+  --pad: 64px;
+  --gap: 48px;
+  --panel: #fafafa;
+  --ink: #1b1b1b;
+  position: relative;
+  color: var(--ink);
+  font-weight: 400;
+  padding-bottom: 8px;
+}
+
+.dlv [id^='dlv-'] {
+  scroll-margin-top: 72px;
+}
+
+.dlv img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- 进度条 / 顶部条 ---------- */
+.case.delivery .case-progress i {
+  background: #0080ff;
+}
+
+/* ---------- 右侧 section 轨道 ---------- */
+.dlv-rail {
+  position: fixed;
+  top: 50%;
+  right: clamp(24px, 5vw, 80px);
+  z-index: 55;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  padding: 20px 0 20px 48px;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.28s var(--ease);
+}
+
+/* 默认隐藏，hover / 键盘聚焦时淡入 */
+.dlv-rail:hover,
+.dlv-rail:focus-within {
+  opacity: 1;
+}
+
+.dlv-rail button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 12px;
+  padding: 0;
+}
+
+.dlv-rail button i {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: #c9c9c9;
+  transition: width 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.dlv-rail button.is-active i {
+  width: 34px;
+  background: #111;
+}
+
+.dlv-rail-tip {
+  position: absolute;
+  right: 44px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: #8a8a8a;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(4px);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+  pointer-events: none;
+}
+
+.dlv-rail button:hover .dlv-rail-tip,
+.dlv-rail button:focus-visible .dlv-rail-tip {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- 版心 ---------- */
+.dlv-main {
+  width: min(990px, 100%);
+  margin: 0 auto;
+}
+
+.dlv-card {
+  background: var(--panel);
+  border-radius: 24px;
+  padding: var(--pad);
+  margin-bottom: var(--gap);
+}
+
+/* ---------- 通用排版 ---------- */
+.dlv-tag {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(219, 219, 219, 0.2);
+  -webkit-backdrop-filter: blur(6.6667px);
+  backdrop-filter: blur(6.6667px);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.dlv-h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #3a3a3a;
+  letter-spacing: -0.01em;
+}
+
+.dlv-h3--wide {
+  margin-top: 64px;
+}
+
+.dlv-lit {
+  margin: 0 0 4px;
+  max-width: 46ch;
+  font-size: 16px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+  color: #7c7c7c;
+}
+
+.dlv-lit b {
+  font-weight: 500;
+  color: #242424;
+}
+
+/* ---------- 头部布局由共享 CaseHero 提供，见 global.css ---------- */
+
+/* ---------- Background ---------- */
+.dlv-bg-copy {
+  display: grid;
+  grid-template-columns: 48% minmax(0, 1fr);
+  margin-top: 56px;
+}
+
+.dlv-bg-copy>div {
+  grid-column: 2;
+  max-width: 400px;
+}
+
+.dlv-bg-block+.dlv-bg-block {
+  margin-top: 40px;
+}
+
+.dlv-bg-lists {
+  margin-top: 56px;
+}
+
+/* Problems / Challenges 卡片 */
+.dlv-bg-lists .dlv-note {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  min-height: 192px;
+  margin-bottom: 40px;
+  padding: 0 40px;
+  border-radius: 16px;
+  background: radial-gradient(50% 50% at 50% 50%, #f7fdfe 0%, #eafbfe 100%);
+}
+
+.dlv-bg-lists .dlv-note li+li {
+  margin-top: 0;
+}
+
+.dlv-note {
+  margin: 0 0 40px;
+  padding: 36px 56px;
+  border-radius: 24px;
+  list-style: none;
+  font-size: 16px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+  color: #333;
+}
+
+.dlv-note li {
+  position: relative;
+  padding-left: 16px;
+}
+
+.dlv-note li+li {
+  margin-top: 8px;
+}
+
+.dlv-note li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: #8a8a8a;
+}
+
+.dlv-note--flat {
+  margin-bottom: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  color: #767676;
+}
+
+/* ---------- Users' Needs ---------- */
+.dlv-needs-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 60px;
+  margin-top: 40px;
+  padding: 57px 100px 100px 64px;
+  border-radius: 36px;
+  background: radial-gradient(50% 50% at 50% 50%, #defaff 0%, #f0fdff 100%);
+  box-shadow: inset 0 0 100px 0 rgba(176, 207, 233, 0.5);
+}
+
+.dlv-needs-intro {
+  max-width: 78ch;
+}
+
+.dlv-table {
+  width: 100%;
+  margin-top: 0;
+}
+
+.dlv-table-head,
+.dlv-table-row {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr) 200px;
+  gap: 32px;
+}
+
+.dlv-table-head {
+  padding-bottom: 24px;
+  font-size: 16px;
+  color: #333;
+}
+
+.dlv-table-row {
+  align-items: start;
+  padding: 24px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.dlv-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 118px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: #f1f1f1;
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.dlv-pill--manager {
+  background: #e3f1fd;
+}
+
+.dlv-pill--staff {
+  background: #0b4bb5;
+  color: #fff;
+}
+
+.dlv-pill--kitchen {
+  background: #fdf4d7;
+}
+
+.dlv-table-row .dlv-pill {
+  justify-self: start;
+}
+
+.dlv-needs-list,
+.dlv-sectors {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #3d3d3d;
+}
+
+.dlv-needs-list b {
+  font-weight: 500;
+  color: #1f1f1f;
+}
+
+.dlv-needs-list li {
+  position: relative;
+  padding-left: 16px;
+}
+
+.dlv-needs-list li+li {
+  margin-top: 6px;
+}
+
+.dlv-needs-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: #8a8a8a;
+}
+
+.dlv-sectors li+li {
+  margin-top: 6px;
+}
+
+.dlv-needs-cards {
+  margin-top: 56px;
+}
+
+.dlv-need-card+.dlv-need-card {
+  margin-top: 24px;
+}
+
+.dlv-need-card>.dlv-pill {
+  margin-bottom: 0;
+}
+
+.dlv-need-body {
+  padding: 20px 24px 4px;
+}
+
+.dlv-need-body p {
+  max-width: 74ch;
+  margin-bottom: 6px;
+}
+
+.dlv-need-bullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #7c7c7c;
+}
+
+.dlv-need-bullets li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.dlv-need-bullets li+li {
+  margin-top: 4px;
+}
+
+.dlv-need-bullets li::before {
+  content: '•';
+  position: absolute;
+  left: 2px;
+  color: #9a9a9a;
+}
+
+.dlv-need-bullets b,
+.dlv-need-body b {
+  font-weight: 500;
+  color: #242424;
+}
+
+/* ---------- Problem Space ---------- */
+.dlv-space {
+  padding: 64px;
+  margin-bottom: var(--gap);
+  border-radius: 24px;
+  background: radial-gradient(50% 50% at 50% 50%, #f7fcfe 0%, #e2f3fc 100%);
+}
+
+.dlv-space-lead {
+  margin: 64px 0 16px;
+  font-size: 24px;
+  font-style: italic;
+  color: #8f8f8f;
+}
+
+.dlv-space-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: space;
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.55;
+  color: #2c2c2c;
+}
+
+.dlv-space-list li {
+  counter-increment: space;
+  position: relative;
+  padding-left: 28px;
+  max-width: 70ch;
+}
+
+.dlv-space-list li+li {
+  margin-top: 10px;
+}
+
+.dlv-space-list li::before {
+  content: counter(space) '.';
+  position: absolute;
+  left: 0;
+}
+
+/* ---------- Strategy ---------- */
+.dlv-strategy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.dlv-strategy-card {
+  padding: 32px 40px 36px;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.dlv-strategy-head {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.dlv-strategy-head .dlv-h3 {
+  margin: 0;
+  font-size: 24px;
+  font-style: italic;
+  color: #2f2f2f;
+}
+
+.dlv-strategy-num {
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(160deg, #1f5fd0, #79b6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dlv-strategy .dlv-note {
+  margin-top: 24px;
+  font-size: 16px;
+}
+
+/* ---------- Design / Delivery / Product 通用 ---------- */
+.dlv-design-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 92px;
+  gap: 32px;
+  align-items: start;
+}
+
+.dlv-roles {
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 156px;
+}
+
+.dlv-role {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 999px;
+  font-size: 16px;
+  color: #1f1f1f;
+  background: #f0f0f0;
+  white-space: nowrap;
+}
+
+.dlv-role--manager {
+  background: #e3f1fd;
+}
+
+.dlv-role--staff {
+  background: #0b4bb5;
+  color: #fff;
+}
+
+.dlv-role--kitchen {
+  background: #fdf4d7;
+}
+
+.dlv-dash {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.dlv-dash-item {
+  margin: 0;
+}
+
+.dlv-dash-item--1 {
+  grid-column: 1 / -1;
+}
+
+.dlv-dash-item figcaption {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.dlv-dash-role {
+  font-size: 16px;
+  color: #2b2b2b;
+}
+
+.dlv-dash-note {
+  font-size: 14px;
+  font-style: italic;
+  color: #8a8a8a;
+}
+
+.dlv-dash-note::before {
+  content: '—';
+  margin-right: 10px;
+  color: #c4c4c4;
+}
+
+.dlv-dash-item img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.dlv-laptop {
+  margin: 32px 0 0;
+}
+
+.dlv-laptop img {
+  width: 100%;
+}
+
+/* ---------- Robot Delivery Flow ---------- */
+.dlv-flow-title {
+  margin-top: 72px;
+}
+
+.dlv-patterns-label {
+  margin: 40px 0 24px;
+  font-size: 16px;
+  color: #4a4a4a;
+}
+
+.dlv-patterns {
+  margin: 0 0 8px;
+  max-width: 460px;
+}
+
+.dlv-flow {
+  margin: 0;
+  padding: 24px 0 0;
+  list-style: none;
+}
+
+.dlv-flow-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 152px minmax(0, 1fr);
+  gap: 40px;
+  padding-bottom: 28px;
+}
+
+.dlv-flow-step:last-child {
+  padding-bottom: 0;
+}
+
+.dlv-flow-node {
+  position: relative;
+  align-self: start;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: #f0f0f0;
+  font-size: 16px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.dlv-flow-node::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 40px;
+  height: 1px;
+  background: #d9e9f3;
+}
+
+.dlv-flow-copy {
+  display: flex;
+  gap: 48px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.dlv-flow-step:last-child .dlv-flow-copy {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.dlv-flow-group {
+  min-width: 0;
+}
+
+.dlv-flow-who {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c2c2c;
+}
+
+.dlv-flow-group ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #7c7c7c;
+}
+
+.dlv-flow-group li {
+  position: relative;
+  padding-left: 12px;
+}
+
+.dlv-flow-group li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+}
+
+/* ---------- Delivery Management ---------- */
+.dlv-delivery .dlv-roles {
+  margin-top: 0;
+}
+
+.dlv-record {
+  margin-top: 130px;
+}
+
+.dlv-record .dlv-lit {
+  max-width: 480px;
+}
+
+.dlv-delivery .dlv-laptop {
+  width: 79%;
+  margin: 28px 0 0;
+}
+
+.dlv-features {
+  margin-top: 110px;
+}
+
+.dlv-feature {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  padding-top: 110px;
+}
+
+.dlv-feature:first-child {
+  padding-top: 0;
+}
+
+.dlv-feature-media {
+  min-width: 0;
+}
+
+.dlv-charge-chip {
+  margin: 0;
+  max-width: 240px;
+}
+
+.dlv-charge-chip img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.dlv-feature-fig {
+  margin: 0;
+  max-width: 250px;
+}
+
+.dlv-feature-fig img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.dlv-feature-copy .dlv-lit {
+  max-width: 340px;
+}
+
+.dlv-feature-title {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #1f1f1f;
+}
+
+/* ---------- Delivery Management · 流程与异常 ---------- */
+.dlv-exception .dlv-lit {
+  max-width: none;
+}
+
+.dlv-exception-lede {
+  margin-top: 88px;
+}
+
+.dlv-exception-diagram {
+  margin: 40px 0 0;
+}
+
+.dlv-exception-diagram img {
+  width: 100%;
+}
+
+.dlv-exception-note {
+  margin-top: 48px;
+}
+
+.dlv-issue-graph {
+  width: 625px;
+  max-width: 100%;
+  margin: 32px 0 0;
+}
+
+.dlv-issue-graph img {
+  width: 100%;
+  mix-blend-mode: multiply;
+}
+
+.dlv-exception-note--kanban {
+  margin-top: 80px;
+}
+
+.dlv-status-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 790px;
+  margin-top: 24px;
+}
+
+.dlv-status-row figure {
+  margin: 0;
+}
+
+.dlv-status-row img {
+  width: 100%;
+}
+
+.dlv-handling {
+  display: grid;
+  grid-template-columns: 250px 286px;
+  gap: 40px;
+  justify-content: start;
+  align-items: start;
+  margin-top: 80px;
+}
+
+.dlv-handling-copy .dlv-h3 {
+  margin: 0 0 16px;
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+.dlv-handling-copy .dlv-lit {
+  max-width: 250px;
+}
+
+.dlv-handling-card {
+  margin: 0;
+}
+
+.dlv-handling-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* ---------- Product ---------- */
+.dlv-product-title {
+  font-size: 24px;
+  max-width: 30ch;
+}
+
+.dlv-product-table {
+  margin: 40px 0 0;
+}
+
+.dlv-product-table img {
+  border-radius: 10px;
+}
+
+.dlv-shift {
+  margin-top: 56px;
+}
+
+.dlv-shift img {
+  width: 100%;
+}
+
+/* ---------- Usability ---------- */
+.dlv-usability>.dlv-h3 {
+  margin-top: 32px;
+}
+
+.dlv-usability-intro {
+  margin-top: 8px;
+  max-width: 68ch;
+}
+
+.dlv-iterations {
+  margin-top: 48px;
+}
+
+.dlv-iteration {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+  padding: 32px 0;
+  border-top: 1px solid #e6e6e6;
+}
+
+.dlv-iteration:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.dlv-iteration-card {
+  position: relative;
+  padding-top: 10px;
+}
+
+.dlv-num {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #111;
+  color: #fff;
+  font-size: 13px;
+}
+
+.dlv-iteration-card figure {
+  margin: 0;
+  padding: 26px 0 0 26px;
+}
+
+.dlv-iteration-label {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: #2c2c2c;
+}
+
+.dlv-marks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.6;
+  color: #7c7c7c;
+}
+
+.dlv-marks li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.dlv-marks li+li {
+  margin-top: 6px;
+}
+
+.dlv-marks li::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 13px;
+  font-style: normal;
+}
+
+.dlv-marks li.is-yes::before {
+  content: '✓';
+  color: #1e9e57;
+}
+
+.dlv-marks li.is-no::before {
+  content: '✕';
+  color: #e0523f;
+}
+
+.dlv-marks li:not(.is-yes):not(.is-no)::before {
+  content: '·';
+  color: #9a9a9a;
+}
+
+.dlv-marks b {
+  font-weight: 500;
+  color: #242424;
+}
+
+.dlv-state-title {
+  margin-top: 72px;
+}
+
+.dlv-state-intro {
+  max-width: 62ch;
+  margin-bottom: 8px;
+}
+
+.dlv-state-list {
+  margin-top: 24px;
+}
+
+.dlv-state {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) 200px;
+  gap: 24px;
+  align-items: start;
+  padding: 32px 0;
+  border-top: 1px solid #e6e6e6;
+}
+
+.dlv-state-name {
+  margin: 0;
+  font-size: 15px;
+  color: #3a3a3a;
+}
+
+.dlv-state-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.dlv-state-pair figure {
+  margin: 0;
+}
+
+.dlv-state-pair figcaption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #6f6f6f;
+}
+
+.dlv-state-before figcaption span {
+  color: #e0523f;
+}
+
+.dlv-state-after figcaption span {
+  color: #1e9e57;
+}
+
+.dlv-state-notes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.6;
+  color: #7c7c7c;
+}
+
+.dlv-state-notes li+li {
+  margin-top: 6px;
+}
+
+.dlv-state-notes b {
+  font-weight: 500;
+  color: #242424;
+}
+
+/* ---------- 底部项目列表对齐版心 ---------- */
+.delivery .case-index {
+  width: min(990px, 100%);
+  margin: 0 auto;
+  padding: 64px;
+  border-radius: 24px;
+  background: #fafafa;
+}
+
+/* =========================================================
+   1440 / 1280 — 990 居中
+   ========================================================= */
+@media (max-width: 1439px) {
+  .dlv {
+    --pad: 56px;
+  }
+
+  .dlv-main {
+    width: min(990px, calc(100% - 48px));
+  }
+}
+
+/* =========================================================
+   1024 – 1279
+   ========================================================= */
+@media (max-width: 1279px) {
+  .dlv {
+    --pad: 48px;
+  }
+
+  .dlv-rail {
+    display: none;
+  }
+
+  .dlv-table-head,
+  .dlv-table-row {
+    grid-template-columns: 168px minmax(0, 1fr) 164px;
+    gap: 24px;
+  }
+
+  .dlv-state {
+    grid-template-columns: 100px minmax(0, 1fr);
+  }
+
+  .dlv-state-notes {
+    grid-column: 2;
+  }
+}
+
+/* =========================================================
+   768 — 通栏
+   ========================================================= */
+@media (max-width: 1023px) {
+  .dlv {
+    --pad: 40px;
+    --gap: 40px;
+  }
+
+  .dlv-main {
+    width: 100%;
+  }
+
+  .dlv-card,
+  .dlv-space {
+    border-radius: 0;
+  }
+
+  .dlv-needs-panel {
+    gap: 40px;
+    padding: 40px 32px 48px;
+    border-radius: 28px;
+  }
+
+  .dlv-bg-copy {
+    margin-top: 40px;
+  }
+
+  .dlv-table-head,
+  .dlv-table-row {
+    grid-template-columns: 150px minmax(0, 1fr) 150px;
+  }
+
+  .dlv-design-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dlv-roles {
+    position: static;
+    order: -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 0;
+  }
+
+  .dlv-role {
+    height: 34px;
+    padding: 0 18px;
+  }
+
+  /* Delivery 在 768 仍保留右侧角色栏与双列排版 */
+  .dlv-delivery .dlv-design-grid {
+    grid-template-columns: minmax(0, 1fr) 96px;
+    gap: 24px;
+  }
+
+  .dlv-delivery .dlv-roles {
+    position: sticky;
+    top: 80px;
+    order: 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 4px;
+    margin: 0;
+  }
+
+  .dlv-delivery .dlv-role {
+    height: 38px;
+    padding: 0 10px;
+    font-size: 14px;
+  }
+
+  .dlv-record {
+    margin-top: 110px;
+  }
+
+  .dlv-delivery .dlv-laptop {
+    width: 79%;
+  }
+
+  .dlv-features {
+    margin-top: 90px;
+  }
+
+  .dlv-feature {
+    grid-template-columns: 250px minmax(0, 1fr);
+    padding-top: 90px;
+  }
+
+  .dlv-feature-copy .dlv-lit {
+    max-width: 340px;
+  }
+
+  .dlv-status-row {
+    display: block;
+    columns: 2;
+    column-gap: 18px;
+    max-width: 526px;
+  }
+
+  .dlv-status-row figure {
+    break-inside: avoid;
+    margin: 0 0 18px;
+  }
+
+  .dlv-iteration {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .dlv-state {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .dlv-state-notes {
+    grid-column: 1;
+  }
+}
+
+/* =========================================================
+   390 — 手机
+   ========================================================= */
+@media (max-width: 600px) {
+  .dlv {
+    --pad: 16px;
+    --gap: 12px;
+  }
+
+  .dlv-card {
+    border-radius: 16px;
+  }
+
+  .dlv-space {
+    border-radius: 16px;
+    padding: var(--pad);
+  }
+
+  .dlv-tag {
+    padding: 10px 14px;
+    font-size: 16px;
+  }
+
+  .dlv-h3 {
+    font-size: 24px;
+  }
+
+  .dlv-h3--wide {
+    margin-top: 40px;
+  }
+
+  .dlv-lit {
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .dlv-bg-copy {
+    grid-template-columns: 1fr;
+    margin-top: 28px;
+  }
+
+  .dlv-bg-copy>div {
+    grid-column: 1;
+    max-width: none;
+  }
+
+  .dlv-bg-block+.dlv-bg-block {
+    margin-top: 28px;
+  }
+
+  .dlv-bg-lists {
+    margin-top: 32px;
+  }
+
+  .dlv-note {
+    padding: 22px 20px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .dlv-needs-list,
+  .dlv-sectors,
+  .dlv-need-bullets,
+  .dlv-flow-group ul {
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .dlv-bg-lists .dlv-note {
+    min-height: 0;
+    padding: 24px 20px;
+  }
+
+  .dlv-needs-panel {
+    gap: 24px;
+    margin-top: 24px;
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .dlv-table-head {
+    display: none;
+  }
+
+  .dlv-table-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 20px 0;
+  }
+
+  .dlv-needs-list,
+  .dlv-sectors {
+    font-size: 14px;
+  }
+
+  .dlv-sectors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-style: normal;
+    font-size: 12px;
+  }
+
+  .dlv-sectors li {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .dlv-sectors li+li {
+    margin-top: 0;
+  }
+
+  .dlv-pill {
+    min-width: 96px;
+    padding: 9px 18px;
+    font-size: 14px;
+  }
+
+  .dlv-needs-cards {
+    margin-top: 32px;
+  }
+
+  .dlv-need-body {
+    padding: 14px 4px 0;
+  }
+
+  .dlv-need-bullets {
+    font-size: 14px;
+  }
+
+  .dlv-space {
+    padding: 24px 16px;
+  }
+
+  .dlv-space-lead {
+    margin: 40px 0 12px;
+    font-size: 18px;
+  }
+
+  .dlv-space-list {
+    font-size: 15px;
+  }
+
+  .dlv-strategy {
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  .dlv-strategy-card {
+    padding: 20px 20px 24px;
+    border-radius: 18px;
+  }
+
+  .dlv-strategy-head {
+    gap: 18px;
+    padding-bottom: 14px;
+  }
+
+  .dlv-strategy-num {
+    font-size: 44px;
+  }
+
+  .dlv-strategy-head .dlv-h3 {
+    font-size: 18px;
+  }
+
+  .dlv-strategy .dlv-note {
+    margin-top: 16px;
+    padding: 0;
+    background: none;
+  }
+
+  .dlv-dash {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+
+  .dlv-dash-item--1 {
+    grid-column: 1;
+  }
+
+  .dlv-dash-role {
+    font-size: 14px;
+  }
+
+  .dlv-dash-note {
+    font-size: 12px;
+  }
+
+  .dlv-laptop {
+    margin-top: 20px;
+  }
+
+  .dlv-flow-title {
+    margin-top: 40px;
+  }
+
+  .dlv-patterns {
+    max-width: 100%;
+  }
+
+  .dlv-flow-step {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-bottom: 20px;
+  }
+
+  .dlv-flow-node {
+    justify-self: start;
+    padding: 9px 16px;
+    font-size: 13px;
+  }
+
+  .dlv-flow-node::after {
+    display: none;
+  }
+
+  .dlv-flow-copy {
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-bottom: 16px;
+  }
+
+  .dlv-flow-group {
+    flex: 1 1 40%;
+  }
+
+  .dlv-flow-step:last-child .dlv-flow-copy {
+    padding-bottom: 0;
+  }
+
+  .dlv-delivery .dlv-design-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dlv-delivery .dlv-roles {
+    position: static;
+    order: -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 0;
+  }
+
+  .dlv-delivery .dlv-role {
+    height: 34px;
+    padding: 0 18px;
+    font-size: 14px;
+  }
+
+  .dlv-record {
+    margin-top: 72px;
+  }
+
+  .dlv-record .dlv-lit {
+    max-width: none;
+  }
+
+  .dlv-delivery .dlv-laptop {
+    width: 100%;
+  }
+
+  .dlv-features {
+    margin-top: 64px;
+  }
+
+  .dlv-feature {
+    grid-template-columns: minmax(0, 44%) minmax(0, 1fr);
+    gap: 16px;
+    padding-top: 64px;
+  }
+
+  .dlv-feature-title {
+    font-size: 14px;
+  }
+
+  .dlv-charge-chip,
+  .dlv-feature-fig {
+    max-width: 100%;
+  }
+
+  .dlv-feature-copy .dlv-lit {
+    max-width: none;
+  }
+
+  .dlv-exception-lede,
+  .dlv-exception-note {
+    margin-top: 40px;
+  }
+
+  .dlv-issue-graph {
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .dlv-exception-note--kanban {
+    margin-top: 48px;
+  }
+
+  .dlv-status-row {
+    max-width: none;
+  }
+
+  .dlv-exception-diagram {
+    margin-top: 24px;
+  }
+
+  .dlv-handling {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+    margin-top: 56px;
+  }
+
+  .dlv-handling-copy .dlv-h3 {
+    font-size: 18px;
+  }
+
+  .dlv-handling-copy .dlv-lit {
+    max-width: none;
+  }
+
+  .dlv-product-title,
+  .dlv-usability>.dlv-h3 {
+    font-size: 18px;
+  }
+
+  .dlv-usability .dlv-h3--wide {
+    font-size: 20px;
+  }
+
+  .dlv-product-table {
+    margin-top: 24px;
+  }
+
+  .dlv-shift {
+    margin-top: 32px;
+  }
+
+  .dlv-iterations {
+    margin-top: 28px;
+  }
+
+  .dlv-iteration {
+    padding: 24px 0;
+  }
+
+  .dlv-marks {
+    font-size: 13px;
+  }
+
+  .dlv-state {
+    padding: 24px 0;
+  }
+
+  .dlv-state-pair {
+    grid-template-columns: 1fr;
+  }
+
+  .dlv-state-notes {
+    font-size: 12px;
+  }
+
+  .delivery .case-index {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dlv * {
+    transition-duration: 0.001ms !important;
+  }
+}

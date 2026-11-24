@@ -1,0 +1,199 @@
+/* =========================================================
+   Photos —— 散点场 + 横向无缝跑马灯 + 灯箱
+   以 1440 为基准，通过 --lane-count / --scale / 高度控制五个断点。
+   JS 读取这些 CSS 变量计算坐标，避免硬编码五套数据。
+   ========================================================= */
+
+.photos-page {
+  min-height: 100vh;
+  background-color: var(--paper);
+  /* 24 × 24 网格，浅灰 #BFBFBF 10% */
+  background-image:
+    linear-gradient(to right, rgba(191, 191, 191, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(191, 191, 191, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ---------- 散点场舞台 ---------- */
+.photos-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(560px, 82vh, 1000px);
+  padding: 0 var(--edge);
+  overflow: hidden;
+  touch-action: pan-y;
+  /* 1440+ 默认值 */
+  --lane-count: 4;
+  --scale: 1;
+}
+
+.photos-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+/* 单张照片：位置由 JS 以内联 left/top/width/height 写入 */
+.photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  overflow: hidden;
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* 全站 hover 规则：非文字元素只降透明度 + 极轻微位移，不缩放不阴影 */
+@media (hover: hover) {
+  .photo:hover {
+    opacity: 0.72;
+    transform: translateY(-4px);
+  }
+}
+
+/* 触屏：点击反馈极轻微，无 hover 残留 */
+.photo:active {
+  opacity: 0.8;
+}
+
+/* ---------- 减少动态效果：静止，可横向拖动浏览 ---------- */
+.photos-stage.is-static {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.photos-stage.is-static .photos-track {
+  transform: none !important;
+}
+
+/* ---------- 灯箱 ---------- */
+.photos-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6vh 6vw;
+  background: rgba(10, 10, 10, 0.97);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease), visibility 0.4s var(--ease);
+}
+
+.photos-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.photos-lightbox img {
+  max-width: 90vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+  animation: lb-pop 0.45s var(--ease);
+}
+
+@keyframes lb-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.photos-lightbox-close {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  border-radius: 50%;
+  transition: opacity 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.photos-lightbox-close:hover {
+  opacity: 0.7;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- 响应式断点 ---------- */
+/* 1280 —— 1439 */
+@media (max-width: 1439.98px) and (min-width: 1280px) {
+  .photos-stage {
+    height: clamp(520px, 76vh, 920px);
+    --lane-count: 4;
+    --scale: 0.89;
+  }
+}
+
+/* 1024 —— 1279 */
+@media (max-width: 1279.98px) and (min-width: 1024px) {
+  .photos-stage {
+    height: clamp(480px, 70vh, 820px);
+    --lane-count: 3;
+    --scale: 0.72;
+  }
+}
+
+/* 768 —— 1023 */
+@media (max-width: 1023.98px) and (min-width: 768px) {
+  .photos-stage {
+    height: clamp(440px, 64vh, 720px);
+    --lane-count: 3;
+    --scale: 0.55;
+  }
+}
+
+/* 390 及以下（覆盖 <768） */
+@media (max-width: 767.98px) {
+  .photos-stage {
+    height: clamp(420px, 60vh, 620px);
+    --lane-count: 2;
+    --scale: 0.32;
+  }
+
+  .photos-lightbox {
+    padding: 4vh 4vw;
+  }
+
+  .photos-lightbox-close {
+    top: 14px;
+    right: 14px;
+  }
+}
+
+/* 减少动态效果：灯箱弹放归零，只留透明度 */
+@media (prefers-reduced-motion: reduce) {
+  .photos-lightbox img {
+    animation: none;
+  }
+}

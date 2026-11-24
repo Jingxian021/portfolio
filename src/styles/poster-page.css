@@ -1,0 +1,437 @@
+.poster-page {
+  --poster-gutter: 100px;
+  --poster-grid-gap: 40px;
+  --poster-top-space: 48px;
+  min-height: 100vh;
+  padding: 0 var(--poster-gutter) 140px;
+  overflow: hidden;
+  background: #000;
+  color: #f4f4f4;
+  font-family: 'Urbanist', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-weight: 400;
+}
+
+.poster-seven-steps {
+  --poster-gutter: 68px;
+  --poster-grid-gap: 36px;
+}
+
+.poster-animal-poster,
+.poster-100teeth {
+  --poster-gutter: 68px;
+  --poster-grid-gap: 36px;
+}
+
+.poster-back {
+  position: fixed;
+  top: 24px;
+  right: var(--poster-gutter);
+  z-index: 40;
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  color: #f4f4f4;
+  font-size: 13px;
+  line-height: 1;
+  text-decoration: none;
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.poster-back:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.poster-back:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.poster-page h1,
+.poster-page h2,
+.poster-page p,
+.poster-page figure {
+  margin: 0;
+}
+
+.poster-page img {
+  display: block;
+  max-width: 100%;
+}
+
+.poster-hero {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 220px;
+  padding-top: calc(280px + var(--poster-top-space));
+}
+
+.poster-hero img {
+  width: 100%;
+  height: auto;
+}
+
+.poster-colorful-buddha .poster-hero {
+  margin-bottom: 520px;
+  padding-top: calc(330px + var(--poster-top-space));
+}
+
+.poster-intro {
+  padding-top: calc(320px + var(--poster-top-space));
+}
+
+.poster-seven-steps .poster-intro,
+.poster-animal-poster .poster-intro,
+.poster-100teeth .poster-intro {
+  padding-top: calc(300px + var(--poster-top-space));
+}
+
+.poster-peaceful .poster-intro {
+  padding-top: calc(360px + var(--poster-top-space));
+}
+
+.poster-nothing .poster-intro,
+.poster-colorful-buddha .poster-intro {
+  padding-top: 0;
+}
+
+.poster-intro h1 {
+  max-width: 1200px;
+  margin-bottom: 28px;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.poster-kicker {
+  margin-bottom: 28px !important;
+  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-size: 32px;
+  line-height: 1.3;
+}
+
+.poster-description {
+  max-width: 1200px;
+}
+
+.poster-description p {
+  margin-bottom: 24px;
+  font-size: 20px;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.poster-description p:last-child {
+  margin-bottom: 0;
+}
+
+.poster-description .is-chinese {
+  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.poster-block {
+  margin-top: 160px;
+}
+
+.poster-animal-poster .poster-block,
+.poster-100teeth .poster-block {
+  margin-top: 200px;
+}
+
+.poster-heading {
+  position: relative;
+  margin-top: 220px;
+  text-align: center;
+}
+
+.poster-heading h2 {
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.poster-heading p {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.poster-heading+.poster-grid {
+  margin-top: 64px;
+}
+
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--poster-grid-gap);
+  row-gap: 60px;
+}
+
+.poster-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 50px;
+}
+
+.poster-grid--5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.poster-100teeth .poster-grid {
+  column-gap: 24px;
+  row-gap: 24px;
+}
+
+.poster-100teeth .poster-item img {
+  aspect-ratio: 1 / 1;
+}
+
+.poster-item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1190 / 1684;
+  object-fit: contain;
+}
+
+.poster-item figcaption {
+  min-height: 24px;
+  padding-top: 12px;
+  font-family: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.poster-media {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.poster-media img {
+  width: auto;
+  height: auto;
+}
+
+.poster-media--cloud img {
+  width: 160px;
+}
+
+.poster-media--palette img,
+.poster-media--shapes img {
+  width: 100%;
+}
+
+.poster-media--single img {
+  width: 100%;
+  max-width: 600px;
+}
+
+.poster-peaceful .poster-intro+.poster-block {
+  margin-top: 320px;
+}
+
+.poster-closing {
+  width: 100%;
+  max-width: 600px;
+  margin: 260px auto 0;
+  text-align: center;
+}
+
+.poster-closing img {
+  width: 100%;
+  height: auto;
+}
+
+.poster-closing figcaption {
+  margin-top: 70px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.poster-closing--symbol {
+  max-width: none;
+  margin-top: 300px;
+}
+
+.poster-closing--symbol img {
+  width: 140px;
+  margin: 0 auto;
+}
+
+.poster-closing--symbol figcaption {
+  margin-top: 28px;
+}
+
+@media (max-width: 1023px) {
+  .poster-page {
+    --poster-gutter: clamp(40px, 10.4167vw, 80px);
+    --poster-grid-gap: 0px;
+    --poster-top-space: 100px;
+    padding-bottom: 110px;
+  }
+
+  .poster-seven-steps {
+    --poster-gutter: clamp(32px, 8.59375vw, 66px);
+  }
+
+  .poster-animal-poster,
+  .poster-100teeth {
+    --poster-gutter: clamp(40px, 8.8542vw, 68px);
+  }
+
+  .poster-back {
+    top: 16px;
+    font-size: 12px;
+  }
+
+  .poster-hero {
+    margin-bottom: 350px;
+    padding-top: calc(256px + var(--poster-top-space));
+  }
+
+  .poster-colorful-buddha .poster-hero {
+    margin-bottom: 300px;
+    padding-top: calc(260px + var(--poster-top-space));
+  }
+
+  .poster-intro {
+    padding-top: calc(230px + var(--poster-top-space));
+  }
+
+  .poster-seven-steps .poster-intro,
+  .poster-animal-poster .poster-intro,
+  .poster-100teeth .poster-intro {
+    padding-top: calc(230px + var(--poster-top-space));
+  }
+
+  .poster-peaceful .poster-intro {
+    padding-top: calc(250px + var(--poster-top-space));
+  }
+
+  .poster-nothing .poster-intro,
+  .poster-colorful-buddha .poster-intro {
+    padding-top: 0;
+  }
+
+  .poster-intro h1 {
+    margin-bottom: 24px;
+    font-size: clamp(32px, 5.2083vw, 40px);
+    line-height: 1.2;
+  }
+
+  .poster-kicker {
+    margin-bottom: 24px !important;
+    font-size: clamp(26px, 4.1667vw, 32px);
+  }
+
+  .poster-description p {
+    margin-bottom: 20px;
+    font-size: clamp(16px, 2.6042vw, 20px);
+  }
+
+  .poster-description .is-chinese {
+    font-size: clamp(15px, 2.34375vw, 18px);
+  }
+
+  .poster-description .is-desktop-only {
+    display: none;
+  }
+
+  .poster-block,
+  .poster-heading {
+    margin-top: clamp(110px, 20.8333vw, 160px);
+  }
+
+  .poster-animal-poster .poster-block,
+  .poster-100teeth .poster-block {
+    margin-top: clamp(110px, 20.8333vw, 160px);
+  }
+
+  .poster-animal-poster .poster-block + .poster-block {
+    margin-top: 36px;
+  }
+
+  .poster-animal-poster .poster-grid {
+    row-gap: 36px;
+  }
+
+  .poster-heading h2 {
+    font-size: clamp(28px, 4.1667vw, 32px);
+  }
+
+  .poster-heading p {
+    font-size: 8px;
+  }
+
+  .poster-heading+.poster-grid {
+    margin-top: clamp(42px, 8.3333vw, 64px);
+  }
+
+  .poster-grid,
+  .poster-grid--3 {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(40px, 8.3333vw, 64px);
+  }
+
+  .poster-100teeth .poster-grid--5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 506px;
+    margin-inline: auto;
+  }
+
+  .poster-media--single img {
+    max-width: none;
+  }
+
+  .poster-item figcaption {
+    padding-top: 10px;
+    font-size: 14px;
+  }
+
+  .poster-media--cloud img {
+    width: 120px;
+  }
+
+  .poster-peaceful .poster-intro+.poster-block {
+    margin-top: clamp(140px, 26.0417vw, 200px);
+  }
+
+  .poster-closing {
+    margin-top: clamp(150px, 26.0417vw, 200px);
+  }
+
+  .poster-closing figcaption {
+    margin-top: 48px;
+    font-size: 14px;
+  }
+
+  .poster-closing--symbol {
+    margin-top: 220px;
+  }
+
+  .poster-closing--symbol img {
+    width: 110px;
+  }
+
+  .poster-closing--symbol figcaption {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .poster-heading p {
+    position: static;
+    margin-top: 12px;
+    transform: none;
+    text-align: center;
+  }
+}
